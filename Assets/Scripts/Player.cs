@@ -16,10 +16,10 @@ public class Player : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         Vector2 input = new Vector2(1, Input.GetAxisRaw("Vertical"));
-        Vector2 delteMove = input * speed * Time.deltaTime;
+        Vector2 delteMove = input * speed * Time.fixedDeltaTime;
         rb.MovePosition(ClampToScreen(rb.position + delteMove));
     }
 
