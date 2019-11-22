@@ -26,13 +26,11 @@ public class IslandSpawner : MonoBehaviour
         move += transform.position.x - lastX;
         lastX = transform.position.x;
 
-
         while (spawnsPerMeter > 0 && move >= spawnsPerMeter)
         {
             spawnLastX += spawnsPerMeter;
             move -= spawnsPerMeter;
             BuildIsland();
-            //spawned.transform.position = new Vector3(spawnLastX, transform.position.y, transform.position.z);
         }
     }
 
@@ -42,13 +40,13 @@ public class IslandSpawner : MonoBehaviour
         length = (Random.Range(0, 4));
         GameObject front = Instantiate(islandFront);
         front.transform.position = new Vector3(position, transform.position.y, transform.position.z);
-        position = position + 4;
+        position = position + 1;
         while (length > 0)
         {
             length = length - 1;
             GameObject mid = Instantiate(RandomMidPrefab());
             mid.transform.position = new Vector3(position, transform.position.y, transform.position.z);
-            position = position + 4;
+            position = position + 1;
         }
             
         GameObject back = Instantiate(islandBack);

@@ -211,7 +211,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1053822789}
-  - {fileID: 1194857031}
+  - {fileID: 1041951278}
   - {fileID: 1820400512}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -302,7 +302,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1733977260}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1041951277
 GameObject:
@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 1041951279}
   - component: {fileID: 1041951281}
   m_Layer: 0
-  m_Name: Layer2
+  m_Name: WaterBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,12 +330,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041951277}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1194857031}
-  m_RootOrder: 0
+  m_Father: {fileID: 107005987}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -458,43 +458,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053822788}
   m_CullTransparentMesh: 0
---- !u!1 &1194857030
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1194857031}
-  m_Layer: 0
-  m_Name: Water
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1194857031
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1194857030}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1041951278}
-  - {fileID: 2061855902}
-  m_Father: {fileID: 107005987}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1921, y: 100}
-  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1234590226
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +623,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353858263}
   m_CullTransparentMesh: 0
+--- !u!1 &1382006096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1382006097}
+  - component: {fileID: 1382006098}
+  m_Layer: 0
+  m_Name: IslandSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1382006097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382006096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.47, y: -4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1733977260}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1382006098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382006096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c97404bee2ea24c9937359db77cf60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  midPrefabs:
+  - {fileID: 8346132371050782611, guid: 94d1bca588eef8e4c864ccd4f1239085, type: 3}
+  - {fileID: 8346132371050782611, guid: 08c959b1eab501d4ba96a350a7240ce1, type: 3}
+  - {fileID: 8346132371050782611, guid: 4c9456f309b404a43ae64491216e9535, type: 3}
+  - {fileID: 8346132371050782611, guid: 96f9335bc547d9047b61ad3af69e25f0, type: 3}
+  spawnsPerMeter: 10
+  islandFront: {fileID: 8749639780809127066, guid: 374390e3cec284b4a832071cd83f5d8a,
+    type: 3}
+  islandBack: {fileID: 1086433181877126114, guid: 877b95b93c86da244b12fbaba627da56,
+    type: 3}
 --- !u!1 &1456744132
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f87de9088dda1479671557d7e21de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 2, y: 10}
+  speed: {x: 2, y: 6}
   floorCeilY: {x: -2.25, y: 0.75}
 --- !u!212 &1465611713
 SpriteRenderer:
@@ -899,6 +915,7 @@ Transform:
   m_Children:
   - {fileID: 1234590227}
   - {fileID: 1456744133}
+  - {fileID: 1382006097}
   - {fileID: 519420032}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -1047,7 +1064,7 @@ GameObject:
   - component: {fileID: 2061855904}
   - component: {fileID: 2061855903}
   m_Layer: 0
-  m_Name: Layer1
+  m_Name: WaterFG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1060,12 +1077,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061855901}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1194857031}
-  m_RootOrder: 1
+  m_Father: {fileID: 2114812277}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1207,7 +1224,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 2061855902}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
