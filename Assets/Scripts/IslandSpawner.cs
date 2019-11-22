@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class IslandSpawner : MonoBehaviour
 {
-    public List<GameObject> islandPrefabs;
+    public List<GameObject> midPrefabs;
     public float spawnsPerMeter;
+    public GameObject islandFront;
+    public GameObject islandBack;
    
 
     float lastX = 0;
     float spawnLastX = 0;
     float move = 0;
+    int length = 0;
 
     void Start()
     {
@@ -28,19 +31,39 @@ public class IslandSpawner : MonoBehaviour
         {
             spawnLastX += spawnsPerMeter;
             move -= spawnsPerMeter;
-            GameObject spawned = Instantiate(RandomPrefab());
-            spawned.transform.position = new Vector3(spawnLastX, transform.position.y, transform.position.z);
+            BuildIsland();
+            //spawned.transform.position = new Vector3(spawnLastX, transform.position.y, transform.position.z);
         }
     }
 
-    GameObject RandomPrefab()
+    void BuildIsland()
     {
-        if (islandPrefabs.Count > 0)
+        float position = transform.position.x;
+        length = (Random.Range(0, 4));
+        GameObject front = Instantiate(islandFront);
+        front.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+        position = position + 4;
+        while (length > 0)
         {
-            return islandPrefabs[Random.Range(0, islandPrefabs.Count)];
+            length = length - 1;
+            GameObject mid = Instantiate(RandomMidPrefab());
+            mid.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+            position = position + 4;
+        }
+            
+        GameObject back = Instantiate(islandBack);
+        back.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+        
+    }
+
+    GameObject RandomMidPrefab()
+    {
+        if (midPrefabs.Count > 0)
+        {
+            return midPrefabs[Random.Range(0, midPrefabs.Count)];
         }
         return null;
     }
 
- 
+
 }
