@@ -19,13 +19,17 @@ public class Bullet : MonoBehaviour
     // Alpha lerp out duration
     public float fadeOutTime;
 
-    SpriteRenderer renderer;
+    // The sprite renderer to fade
+    public SpriteRenderer renderer;
+
+    // An emitter to release before destroying to keep particles alive
+    public ParticleSystemRenderer emitter;
+
     Rigidbody2D rb;
     float curLifeTime;
 
     void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
         // Apply a force that decreases overtime due to linear drag
@@ -45,6 +49,7 @@ public class Bullet : MonoBehaviour
         c.a = Mathf.Min(curLifeTime / fadeInTime, 1f);
         c.a = Mathf.Min((lifeTime - curLifeTime) / fadeOutTime, c.a);
         renderer.color = c;
+        emitter.material.color = c;
 
         // Destroy this when it's lifetime runs out
         if (curLifeTime >= lifeTime)
