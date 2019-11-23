@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // Player movement speed
     public Vector2 speed;
+
+    // Additional buffer space that the player cannot move on the vertical axis
     public Vector2 floorCeilY;
+
+    // Maximum fire rate when the button is held or spammed
     public float fireRate;
+
+    // Bullet to spawn for warm fronts
     public GameObject warmFrontPrefab;
+
+    // Bullet to spawn for cold fronts
     public GameObject coldFrontPrefab;
+
     Rigidbody2D rb;
     float fireCooldown;
 
@@ -19,11 +29,15 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        // Update the shoot cooldown.
         fireCooldown = Mathf.Max(fireCooldown - Time.deltaTime, 0f);
-        if (Input.GetMouseButton(0))
+
+        // Handle user input
+        if (Input.GetMouseButton(0)) // Left mouse
         {
             Fire(coldFrontPrefab);
-        } else if (Input.GetMouseButton(1))
+        } 
+        else if (Input.GetMouseButton(1)) // Right mouse
         {
             Fire(warmFrontPrefab);
         }
@@ -31,11 +45,17 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Get player vertical input
         Vector2 input = new Vector2(1, Input.GetAxisRaw("Vertical"));
+
+        // Calculate the amount to move this frame
         Vector2 delteMove = input * speed * Time.fixedDeltaTime;
+
+        // Update rigidbody position
         rb.MovePosition(ClampToScreen(rb.position + delteMove));
     }
 
+    // Clamps input pos to the screen bounds
     Vector2 ClampToScreen(Vector2 pos)
     {
         Vector3 minScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
@@ -45,14 +65,17 @@ public class Player : MonoBehaviour
         return pos;
     }
 
+    // Shoot a front
     void Fire(GameObject bulletType)
     {
+        // Don't allow shooting when one cooldown
         if (fireCooldown > 0f)
-        {
             return;
-        }
 
+        // Start the fire cooldown
         fireCooldown = fireRate;
+
+        // Spawn a bullet of the right type slightly ahead of us
         GameObject bullet = Instantiate(bulletType);
         bullet.transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
     }

@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    // Initial force to apply on spawn
     public float impulseX;
+
+    // The time until this bullet despawns (seconds)
     public float lifeTime;
-    public float scaleRate; // world units/second
+
+    // There rate that the front grows (world units/second)
+    public float scaleRate;
+
+    // Alpha lerp in duration
     public float fadeInTime;
+
+    // Alpha lerp out duration
     public float fadeOutTime;
 
     SpriteRenderer renderer;
@@ -19,12 +28,13 @@ public class Bullet : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
-        // Apply a force that decreased overtime due to linear drag
+        // Apply a force that decreases overtime due to linear drag
         rb.AddForce(new Vector2(impulseX, 0), ForceMode2D.Impulse);
     }
 
     void Update()
     {
+        // Increment lifetime
         curLifeTime += Time.deltaTime;
 
         // Scale over lifetime
