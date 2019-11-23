@@ -815,6 +815,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: {x: 2, y: 6}
   floorCeilY: {x: -2.25, y: 0.75}
+  fireRate: 1
+  warmFrontPrefab: {fileID: 7196165770003287368, guid: 8795df8047b30be4ab388b4c02fd121e,
+    type: 3}
+  coldFrontPrefab: {fileID: 6943687048465240942, guid: 09db4b1a9b53d1f499bf4207d90bb885,
+    type: 3}
 --- !u!212 &1465611713
 SpriteRenderer:
   m_ObjectHideFlags: 0
