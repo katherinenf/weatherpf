@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class WeatherFront : MonoBehaviour
 {
     // Initial force to apply on spawn
     public float impulseX;
@@ -19,14 +19,21 @@ public class Bullet : MonoBehaviour
     // Alpha lerp out duration
     public float fadeOutTime;
 
+    // Seconds to wait before spawning the cloud
+    public float stormSpawnDelay;
+
+    // The storm prefab to spawn
+    public GameObject stormPrefab;
+
     // The sprite renderer to fade
-    public SpriteRenderer renderer;
+    public SpriteRenderer sprite;
 
     // An emitter to release before destroying to keep particles alive
     public ParticleSystemRenderer emitter;
 
     Rigidbody2D rb;
     float curLifeTime;
+    bool stormSpawned;
 
     void Start()
     {
@@ -41,14 +48,19 @@ public class Bullet : MonoBehaviour
         // Increment lifetime
         curLifeTime += Time.deltaTime;
 
+        if (!stormSpawned && curLifeTime >= stormSpawnDelay)
+        {
+            SpawnStorm();
+        }
+
         // Scale over lifetime
         transform.localScale *= 1f + scaleRate * Time.deltaTime;
 
         // Update fade in and out
-        Color c = renderer.color;
+        Color c = sprite.color;
         c.a = Mathf.Min(curLifeTime / fadeInTime, 1f);
         c.a = Mathf.Min((lifeTime - curLifeTime) / fadeOutTime, c.a);
-        renderer.color = c;
+        sprite.color = c;
         emitter.material.color = c;
 
         // Destroy this when it's lifetime runs out
@@ -56,5 +68,12 @@ public class Bullet : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    void SpawnStorm()
+    {
+        stormSpawned = true;
+        GameObject storm = Instantiate(stormPrefab);
+        storm.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 }
