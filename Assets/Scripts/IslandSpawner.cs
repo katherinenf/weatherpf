@@ -8,6 +8,8 @@ public class IslandSpawner : MonoBehaviour
     public float spawnsPerMeter;
     public GameObject islandFront;
     public GameObject islandBack;
+    public GameObject tree;
+    public GameObject flower;
    
 
     float lastX = 0;
@@ -37,18 +39,19 @@ public class IslandSpawner : MonoBehaviour
     void BuildIsland()
     {
         float position = transform.position.x;
-        length = (Random.Range(0, 4));
+        length = (Random.Range(1, 4));
         GameObject front = Instantiate(islandFront);
         front.transform.position = new Vector3(position, transform.position.y, transform.position.z);
         position = position + 1;
+        int floraType = (Random.Range(0, 2));
         while (length > 0)
         {
             length = length - 1;
             GameObject mid = Instantiate(RandomMidPrefab());
             mid.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+            AddFlora(position, floraType);
             position = position + 1;
         }
-            
         GameObject back = Instantiate(islandBack);
         back.transform.position = new Vector3(position, transform.position.y, transform.position.z);
         
@@ -63,5 +66,20 @@ public class IslandSpawner : MonoBehaviour
         return null;
     }
 
+    void AddFlora(float pos, int type)
+    {
+        float floraHeight = transform.position.y + 1;
+        if (type > 0)
+        {
+            GameObject flora = Instantiate(tree);
+            flora.transform.position = new Vector3(pos, floraHeight, transform.position.z);
+        }
+        if (type == 0)
+        {
+            GameObject flora = Instantiate(flower);
+            flora.transform.position = new Vector3(pos, floraHeight, transform.position.z);
+        }
+
+    }
 
 }
