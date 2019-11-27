@@ -25,8 +25,6 @@ public class Storm : MonoBehaviour
     // The rain emitter that spawns the drops
     public ParticleSystem rainEmitter;
 
-    public Sprite islandBackBrown;
-    public Sprite islandBackGreen;
     public List<Sprite> drySprites;
     public List<Sprite> wetSprites;
 
@@ -78,20 +76,15 @@ public class Storm : MonoBehaviour
                 // Find island sections a storm passes over
                 RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, -Vector2.up, 6f);
 
-                // If an island is hit, makes dry island invisble and wet island visible
-                // Disables collider on islands after change so they aren't hit twice
+                // If an island is hit, switch dry island sprite to wet island sprite
                 foreach (RaycastHit2D i in hits)
                 {
-                    if(i.transform.GetComponent<SpriteRenderer>().sprite == islandBackBrown)
+                    
+                    int spriteIndex = drySprites.IndexOf(i.transform.GetComponent<SpriteRenderer>().sprite);
+                    if (spriteIndex >= 0)
                     {
-                        i.transform.GetComponent<SpriteRenderer>().sprite = islandBackGreen;
-                       // i.transform.GetComponent<SpriteRenderer>().enabled = false;
-                        //i.transform.GetComponent<BoxCollider2D>().enabled = false;
+                        i.transform.GetComponent<SpriteRenderer>().sprite = wetSprites[spriteIndex];
                     }
-                    else
-                        i.transform.GetComponent<SpriteRenderer>().enabled = true;
-                        i.transform.GetComponent<BoxCollider2D>().enabled = false;
-
 
                 }
             }

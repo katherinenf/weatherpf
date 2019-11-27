@@ -182,6 +182,20 @@ MonoBehaviour:
     type: 3}
   tree: {fileID: 2173586880436278421, guid: 154b78ca90022472fb1f301c6e14f5ff, type: 3}
   flower: {fileID: 6317495254838872669, guid: 05b839b3dffdc46aebfee77d4665be8b, type: 3}
+  dryIslandParts:
+  - {fileID: 21300000, guid: db140d651cbb57c45a5a1e903ec47229, type: 3}
+  - {fileID: 21300000, guid: 1d093f5941ea7c64683a32919e6003aa, type: 3}
+  - {fileID: 21300000, guid: a43b77a82dbf8dc4b978ec61753ff911, type: 3}
+  - {fileID: 21300000, guid: 925583f65ed72834fb3f54ea280ef593, type: 3}
+  - {fileID: 21300000, guid: ebcee625475a75a43961e40664e61bff, type: 3}
+  - {fileID: 21300000, guid: 80a63b29de4d835469e6b652014e990a, type: 3}
+  wetIslandParts:
+  - {fileID: 21300000, guid: 49f29b59414055f49ad19bb4fe92790e, type: 3}
+  - {fileID: 21300000, guid: ca3d46f4066a91f448ef7b1563dd223d, type: 3}
+  - {fileID: 21300000, guid: 45d925cc10fef264bab02a1fdb3e398e, type: 3}
+  - {fileID: 21300000, guid: b7b839edd87efe3439f7181578558567, type: 3}
+  - {fileID: 21300000, guid: 88f2202ec2fe00a42a5f7a2f2bd13946, type: 3}
+  - {fileID: 21300000, guid: cab1c03236d3e484b85fd5861ed0c86e, type: 3}
 --- !u!1 &107005983
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +751,8 @@ MonoBehaviour:
   wetIslandBack: {fileID: 0}
   tree: {fileID: 0}
   flower: {fileID: 0}
+  dryIslandParts: []
+  wetIslandParts: []
 --- !u!1 &1456744132
 GameObject:
   m_ObjectHideFlags: 0

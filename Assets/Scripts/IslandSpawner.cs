@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IslandSpawner : MonoBehaviour
-{
-    public List<GameObject> dryMidPrefabs;
-    public List<GameObject> wetMidPrefabs;
+{ 
     public float spawnsPerMeter;
-    public GameObject dryIslandFront;
-    public GameObject dryIslandBack;
-    public GameObject wetIslandFront;
-    public GameObject wetIslandBack;
+    public GameObject islandPrefab;
     public GameObject tree;
     public GameObject flower;
-    
-   
+
+    public List<Sprite> dryIslandParts;
+
+
 
     float lastX = 0;
     float spawnLastX = 0;
@@ -44,28 +41,29 @@ public class IslandSpawner : MonoBehaviour
     {
         float position = transform.position.x;
         length = (Random.Range(1, 4));
-        makeTwo("front", position);
+        GameObject frontVis = Instantiate(islandPrefab);
+        frontVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+        frontVis.transform.GetComponent<SpriteRenderer>().sprite = dryIslandParts[0];
+        //makeTwo("front", position);
         position = position + 1;
         int floraType = (Random.Range(0, 2));
         while (length > 0)
         {
             length = length - 1;
-            makeTwo("mid", position);
+            GameObject midVis = Instantiate(islandPrefab);
+            midVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+            midVis.transform.GetComponent<SpriteRenderer>().sprite = (dryIslandParts[Random.Range(1,dryIslandParts.Count - 2)]);
+            //makeTwo("mid", position);
             AddFlora(position, floraType);
             position = position + 1;
         }
-        makeTwo("back", position);
+        GameObject endVis = Instantiate(islandPrefab);
+        endVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+        endVis.transform.GetComponent<SpriteRenderer>().sprite = dryIslandParts[dryIslandParts.Count - 1];
+        //makeTwo("back", position);
 
     }
 
-    GameObject RandomMidPrefab(List<GameObject> prefabType)
-    {
-        if (prefabType.Count > 0)
-        {
-            return prefabType[Random.Range(0, dryMidPrefabs.Count)];
-        }
-        return null;
-    }
 
     //adds trees or flowers based on type given
     void AddFlora(float pos, int type)
@@ -80,39 +78,9 @@ public class IslandSpawner : MonoBehaviour
         {
             GameObject flora = Instantiate(flower);
             flora.transform.position = new Vector3(pos, floraHeight, transform.position.z);
-            
-        }
-
-    }
-
-    //inserts both a dry and wet island prefab at the same location with SpriteRenderer disabled on wet
-    void makeTwo(string type, float position)
-    {
-        if (type == "front")
-        {
-            GameObject frontVis = Instantiate(dryIslandFront);
-            frontVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
-            GameObject frontInvis = Instantiate(wetIslandFront);
-            frontInvis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
-            frontInvis.GetComponent<SpriteRenderer>().enabled = false;
 
         }
-        if (type == "mid")
-        {
-            GameObject midVis = Instantiate(RandomMidPrefab(dryMidPrefabs));
-            midVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
-            GameObject midInvis = Instantiate(RandomMidPrefab(wetMidPrefabs));
-            midInvis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
-            midInvis.GetComponent<SpriteRenderer>().enabled = false;
-        }
-        if (type == "back")
-        {
-            GameObject backVis = Instantiate(dryIslandBack);
-            backVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
-            GameObject backInvis = Instantiate(wetIslandBack);
-            backInvis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
-            backInvis.GetComponent<SpriteRenderer>().enabled = false;
-        }
+
     }
 
 }
