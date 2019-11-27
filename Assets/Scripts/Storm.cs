@@ -16,11 +16,19 @@ public class Storm : MonoBehaviour
     // Time that this cloud rains for
     public float rainTime;
 
+    //Time before first drop gets low enough to effect flora
+    public float timeToGround;
+
     // Time that this cloud fades out for
     public float fadeOutTime;
 
     // The rain emitter that spawns the drops
     public ParticleSystem rainEmitter;
+
+    public Sprite islandBackBrown;
+    public Sprite islandBackGreen;
+    public List<Sprite> drySprites;
+    public List<Sprite> wetSprites;
 
     SpriteRenderer sprite;
     Rigidbody2D rb;
@@ -37,6 +45,7 @@ public class Storm : MonoBehaviour
 
         // Animate the storm
         StartCoroutine("PlayStormSequence");
+
     }
 
     IEnumerator PlayStormSequence()
@@ -57,10 +66,37 @@ public class Storm : MonoBehaviour
             yield return null;
         } while (curGrowTime < growTime);
 
-
         // Wait while raining
         rainEmitter.Play();
-        yield return new WaitForSeconds(rainTime);
+        float curRainTime = 0f;
+        do
+        {
+            curRainTime += Time.deltaTime;
+
+            if (curRainTime > timeToGround)
+            {
+                // Find island sections a storm passes over
+                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, -Vector2.up, 6f);
+
+                // If an island is hit, makes dry island invisble and wet island visible
+                // Disables collider on islands after change so they aren't hit twice
+                foreach (RaycastHit2D i in hits)
+                {
+                    if(i.transform.GetComponent<SpriteRenderer>().sprite == islandBackBrown)
+                    {
+                        i.transform.GetComponent<SpriteRenderer>().sprite = islandBackGreen;
+                       // i.transform.GetComponent<SpriteRenderer>().enabled = false;
+                        //i.transform.GetComponent<BoxCollider2D>().enabled = false;
+                    }
+                    else
+                        i.transform.GetComponent<SpriteRenderer>().enabled = true;
+                        i.transform.GetComponent<BoxCollider2D>().enabled = false;
+
+
+                }
+            }
+            yield return null;
+        } while (curRainTime < rainTime);
         rainEmitter.Stop();
 
         // Fade out
@@ -74,8 +110,11 @@ public class Storm : MonoBehaviour
             rainRenderer.material.color = c;
             yield return null;
         } while (curfadeTime < fadeOutTime);
+   
 
         // Despawn
         Destroy(gameObject);
     }
+
+
 }

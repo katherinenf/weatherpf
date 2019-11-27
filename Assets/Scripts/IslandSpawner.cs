@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class IslandSpawner : MonoBehaviour
 {
-    public List<GameObject> midPrefabs;
+    public List<GameObject> dryMidPrefabs;
+    public List<GameObject> wetMidPrefabs;
     public float spawnsPerMeter;
-    public GameObject islandFront;
-    public GameObject islandBack;
+    public GameObject dryIslandFront;
+    public GameObject dryIslandBack;
+    public GameObject wetIslandFront;
+    public GameObject wetIslandBack;
     public GameObject tree;
     public GameObject flower;
+    
    
 
     float lastX = 0;
@@ -40,32 +44,30 @@ public class IslandSpawner : MonoBehaviour
     {
         float position = transform.position.x;
         length = (Random.Range(1, 4));
-        GameObject front = Instantiate(islandFront);
-        front.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+        makeTwo("front", position);
         position = position + 1;
         int floraType = (Random.Range(0, 2));
         while (length > 0)
         {
             length = length - 1;
-            GameObject mid = Instantiate(RandomMidPrefab());
-            mid.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+            makeTwo("mid", position);
             AddFlora(position, floraType);
             position = position + 1;
         }
-        GameObject back = Instantiate(islandBack);
-        back.transform.position = new Vector3(position, transform.position.y, transform.position.z);
-        
+        makeTwo("back", position);
+
     }
 
-    GameObject RandomMidPrefab()
+    GameObject RandomMidPrefab(List<GameObject> prefabType)
     {
-        if (midPrefabs.Count > 0)
+        if (prefabType.Count > 0)
         {
-            return midPrefabs[Random.Range(0, midPrefabs.Count)];
+            return prefabType[Random.Range(0, dryMidPrefabs.Count)];
         }
         return null;
     }
 
+    //adds trees or flowers based on type given
     void AddFlora(float pos, int type)
     {
         float floraHeight = transform.position.y + 1;
@@ -78,8 +80,39 @@ public class IslandSpawner : MonoBehaviour
         {
             GameObject flora = Instantiate(flower);
             flora.transform.position = new Vector3(pos, floraHeight, transform.position.z);
+            
         }
 
+    }
+
+    //inserts both a dry and wet island prefab at the same location with SpriteRenderer disabled on wet
+    void makeTwo(string type, float position)
+    {
+        if (type == "front")
+        {
+            GameObject frontVis = Instantiate(dryIslandFront);
+            frontVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+            GameObject frontInvis = Instantiate(wetIslandFront);
+            frontInvis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+            frontInvis.GetComponent<SpriteRenderer>().enabled = false;
+
+        }
+        if (type == "mid")
+        {
+            GameObject midVis = Instantiate(RandomMidPrefab(dryMidPrefabs));
+            midVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+            GameObject midInvis = Instantiate(RandomMidPrefab(wetMidPrefabs));
+            midInvis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+            midInvis.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        if (type == "back")
+        {
+            GameObject backVis = Instantiate(dryIslandBack);
+            backVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+            GameObject backInvis = Instantiate(wetIslandBack);
+            backInvis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+            backInvis.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
 }

@@ -163,16 +163,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c97404bee2ea24c9937359db77cf60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  midPrefabs:
+  dryMidPrefabs:
   - {fileID: 8346132371050782611, guid: d8125c98e3ad68942b7b487b375827d6, type: 3}
-  - {fileID: 8346132371050782611, guid: 5288d1d1c54619640b2a656a78a8f90e, type: 3}
   - {fileID: 8346132371050782611, guid: 7709be3c108969c4980280be3d84f697, type: 3}
   - {fileID: 8346132371050782611, guid: 6be284edfb069da4da519823cf2574eb, type: 3}
+  wetMidPrefabs:
+  - {fileID: 8346132371050782611, guid: 94d1bca588eef8e4c864ccd4f1239085, type: 3}
+  - {fileID: 8346132371050782611, guid: 4c9456f309b404a43ae64491216e9535, type: 3}
+  - {fileID: 8346132371050782611, guid: 96f9335bc547d9047b61ad3af69e25f0, type: 3}
   spawnsPerMeter: 10
-  islandFront: {fileID: 8749639780809127066, guid: 7eaaeb6cec677f24880107becb7d5b7a,
+  dryIslandFront: {fileID: 8749639780809127066, guid: 7eaaeb6cec677f24880107becb7d5b7a,
     type: 3}
-  islandBack: {fileID: 1086433181877126114, guid: 339435919babea945a0db3d10bae370f,
+  dryIslandBack: {fileID: 1086433181877126114, guid: 339435919babea945a0db3d10bae370f,
     type: 3}
+  wetIslandFront: {fileID: 8749639780809127066, guid: 374390e3cec284b4a832071cd83f5d8a,
+    type: 3}
+  wetIslandBack: {fileID: 1086433181877126114, guid: 877b95b93c86da244b12fbaba627da56,
+    type: 3}
+  tree: {fileID: 2173586880436278421, guid: 154b78ca90022472fb1f301c6e14f5ff, type: 3}
+  flower: {fileID: 6317495254838872669, guid: 05b839b3dffdc46aebfee77d4665be8b, type: 3}
 --- !u!1 &107005983
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,16 +728,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c97404bee2ea24c9937359db77cf60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  midPrefabs:
-  - {fileID: 8346132371050782611, guid: 94d1bca588eef8e4c864ccd4f1239085, type: 3}
-  - {fileID: 8346132371050782611, guid: 08c959b1eab501d4ba96a350a7240ce1, type: 3}
-  - {fileID: 8346132371050782611, guid: 4c9456f309b404a43ae64491216e9535, type: 3}
-  - {fileID: 8346132371050782611, guid: 96f9335bc547d9047b61ad3af69e25f0, type: 3}
+  dryMidPrefabs: []
+  wetMidPrefabs: []
   spawnsPerMeter: 10
-  islandFront: {fileID: 8749639780809127066, guid: 374390e3cec284b4a832071cd83f5d8a,
-    type: 3}
-  islandBack: {fileID: 1086433181877126114, guid: 877b95b93c86da244b12fbaba627da56,
-    type: 3}
+  dryIslandFront: {fileID: 0}
+  dryIslandBack: {fileID: 0}
+  wetIslandFront: {fileID: 0}
+  wetIslandBack: {fileID: 0}
+  tree: {fileID: 0}
+  flower: {fileID: 0}
 --- !u!1 &1456744132
 GameObject:
   m_ObjectHideFlags: 0

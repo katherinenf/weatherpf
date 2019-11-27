@@ -4852,8 +4852,11 @@ MonoBehaviour:
   growTarget: {x: 0.8, y: 0.8, z: 1}
   growTime: 0.75
   rainTime: 3
+  timeToGround: 1
   fadeOutTime: 0.75
   rainEmitter: {fileID: 7366433929705502003}
+  islandBackBrown: {fileID: 21300000, guid: 80a63b29de4d835469e6b652014e990a, type: 3}
+  islandBackGreen: {fileID: 21300000, guid: cab1c03236d3e484b85fd5861ed0c86e, type: 3}
 --- !u!50 &2290564203735369689
 Rigidbody2D:
   serializedVersion: 4
@@ -4865,7 +4868,7 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
+  m_UseAutoMass: 1
   m_Mass: 1
   m_LinearDrag: 0.15
   m_AngularDrag: 0.05
