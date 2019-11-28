@@ -16,9 +16,6 @@ public class Storm : MonoBehaviour
     // Time that this cloud rains for
     public float rainTime;
 
-    //Time before first drop gets low enough to effect flora
-    public float timeToGround;
-
     // Time that this cloud fades out for
     public float fadeOutTime;
 
@@ -48,6 +45,8 @@ public class Storm : MonoBehaviour
 
     IEnumerator PlayStormSequence()
     {
+        rainEmitter.Play();
+
         // Scale up during the growth phase
         Vector3 startScale = transform.localScale;
         float curGrowTime = 0f;
@@ -59,35 +58,34 @@ public class Storm : MonoBehaviour
             Color c = sprite.color;
             c.a = Mathf.SmoothStep(0, 1, t);
             sprite.color = c;
+            rainRenderer.material.color = c;
 
-            transform.localScale = Vector3.Lerp(startScale, growTarget, Mathf.SmoothStep(0f, 1f, t));
+            transform.localScale = growTarget;
+            //transform.localScale = Vector3.Lerp(startScale, growTarget, Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         } while (curGrowTime < growTime);
 
         // Wait while raining
-        rainEmitter.Play();
         float curRainTime = 0f;
         do
         {
             curRainTime += Time.deltaTime;
 
-            if (curRainTime > timeToGround)
+            // Find island sections a storm passes over
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, -Vector2.up, 6f);
+
+            // If an island is hit, switch dry island sprite to wet island sprite
+            foreach (RaycastHit2D i in hits)
             {
-                // Find island sections a storm passes over
-                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, -Vector2.up, 6f);
-
-                // If an island is hit, switch dry island sprite to wet island sprite
-                foreach (RaycastHit2D i in hits)
-                {
                     
-                    int spriteIndex = drySprites.IndexOf(i.transform.GetComponent<SpriteRenderer>().sprite);
-                    if (spriteIndex >= 0)
-                    {
-                        i.transform.GetComponent<SpriteRenderer>().sprite = wetSprites[spriteIndex];
-                    }
-
+                int spriteIndex = drySprites.IndexOf(i.transform.GetComponent<SpriteRenderer>().sprite);
+                if (spriteIndex >= 0)
+                {
+                    i.transform.GetComponent<SpriteRenderer>().sprite = wetSprites[spriteIndex];
                 }
+
             }
+
             yield return null;
         } while (curRainTime < rainTime);
         rainEmitter.Stop();

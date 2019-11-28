@@ -74,6 +74,6 @@ public class WeatherFront : MonoBehaviour
     {
         stormSpawned = true;
         GameObject storm = Instantiate(stormPrefab);
-        storm.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        storm.transform.position = new Vector3(transform.position.x-1, transform.position.y, transform.position.z);
     }
 }
