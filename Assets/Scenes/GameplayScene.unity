@@ -163,18 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c97404bee2ea24c9937359db77cf60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnsPerMeter: 10
-  islandPrefab: {fileID: 8749639780809127066, guid: 374390e3cec284b4a832071cd83f5d8a,
+  spawnDistance: 10
+  islandPrefab: {fileID: 1236185259313945153, guid: 13e0b218dcd5ff94db577db36b59d5fe,
     type: 3}
-  tree: {fileID: 2173586880436278421, guid: 154b78ca90022472fb1f301c6e14f5ff, type: 3}
-  flower: {fileID: 6317495254838872669, guid: 05b839b3dffdc46aebfee77d4665be8b, type: 3}
-  dryIslandParts:
-  - {fileID: 21300000, guid: db140d651cbb57c45a5a1e903ec47229, type: 3}
-  - {fileID: 21300000, guid: 1d093f5941ea7c64683a32919e6003aa, type: 3}
-  - {fileID: 21300000, guid: a43b77a82dbf8dc4b978ec61753ff911, type: 3}
-  - {fileID: 21300000, guid: 925583f65ed72834fb3f54ea280ef593, type: 3}
-  - {fileID: 21300000, guid: ebcee625475a75a43961e40664e61bff, type: 3}
-  - {fileID: 21300000, guid: 80a63b29de4d835469e6b652014e990a, type: 3}
 --- !u!1 &107005983
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,7 +861,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.06, y: 1.62}
+    oldSize: {x: 1.23, y: 1.78}
     newSize: {x: 2.18, y: 2.09}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
