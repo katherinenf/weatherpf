@@ -4,79 +4,26 @@ using UnityEngine;
 
 public class IslandSpawner : MonoBehaviour
 { 
-    public float spawnsPerMeter;
+    // The distance between island spawns
+    public float spawnDistance;
+
+    // The island prefab to spawn
     public GameObject islandPrefab;
-    public GameObject tree;
-    public GameObject flower;
 
-    public List<Sprite> dryIslandParts;
-
-
-
-    float lastX = 0;
-    float spawnLastX = 0;
-    float move = 0;
-    int length = 0;
+    // The next x position that an island will spawn at
+    float spawnNextX;
 
     void Start()
     {
-        lastX = transform.position.x - spawnsPerMeter;
-        spawnLastX = lastX;
+        spawnNextX = transform.position.x;
     }
 
     void Update()
     {
-        move += transform.position.x - lastX;
-        lastX = transform.position.x;
-
-        while (spawnsPerMeter > 0 && move >= spawnsPerMeter)
+        while (spawnDistance > 0 && spawnNextX <= transform.position.x)
         {
-            spawnLastX += spawnsPerMeter;
-            move -= spawnsPerMeter;
-            BuildIsland();
+            Instantiate(islandPrefab, new Vector3(spawnNextX, transform.position.y, transform.position.z), transform.rotation);
+            spawnNextX += spawnDistance;
         }
     }
-
-    void BuildIsland()
-    {
-        float position = transform.position.x;
-        length = (Random.Range(1, 4));
-        GameObject frontVis = Instantiate(islandPrefab);
-        frontVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
-        frontVis.transform.GetComponent<SpriteRenderer>().sprite = dryIslandParts[0];
-        position = position + 1;
-        int floraType = (Random.Range(0, 2));
-        while (length > 0)
-        {
-            length = length - 1;
-            GameObject midVis = Instantiate(islandPrefab);
-            midVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
-            midVis.transform.GetComponent<SpriteRenderer>().sprite = (dryIslandParts[Random.Range(1,dryIslandParts.Count - 2)]);
-            AddFlora(position, floraType);
-            position = position + 1;
-        }
-        GameObject endVis = Instantiate(islandPrefab);
-        endVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
-        endVis.transform.GetComponent<SpriteRenderer>().sprite = dryIslandParts[dryIslandParts.Count - 1];
-    }
-
-
-    //adds trees or flowers based on type given
-    void AddFlora(float pos, int type)
-    {
-        float floraHeight = transform.position.y + 1;
-        if (type > 0)
-        {
-            GameObject flora = Instantiate(tree);
-            flora.transform.position = new Vector3(pos, floraHeight, transform.position.z);
-        }
-        if (type == 0)
-        {
-            GameObject flora = Instantiate(flower);
-            flora.transform.position = new Vector3(pos, floraHeight, transform.position.z);
-
-        }
-
-    }
-
 }

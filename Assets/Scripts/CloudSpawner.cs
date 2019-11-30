@@ -9,32 +9,25 @@ public class CloudSpawner : MonoBehaviour
     public float verticalExtent;
     public float prewarmDistance;
 
-    float lastX = 0;
-    float spawnLastX = 0;
-    float move = 0;
+    // The next x position that a cloud will spawn at
+    float spawnNextX;
 
     void Start()
     {
-        lastX = transform.position.x - prewarmDistance - spawnsPerMeter;
-        spawnLastX = lastX;
+        spawnNextX = transform.position.x - prewarmDistance;
     }
 
     void Update()
     {
-        move += transform.position.x - lastX;
-        lastX = transform.position.x;
-
-
-        while (spawnsPerMeter > 0 && move >= spawnsPerMeter)
+        while (spawnsPerMeter > 0 && spawnNextX <= transform.position.x)
         {
-            spawnLastX += spawnsPerMeter;
-            move -= spawnsPerMeter;
-            GameObject spawned = Instantiate(RandomPrefab());
-            spawned.transform.position = new Vector3(spawnLastX, RandomSpawnY(), transform.position.z);
+            GameObject spawned = Instantiate(GetRandomCloud());
+            spawned.transform.position = new Vector3(spawnNextX, GetRandomSpawnY(), transform.position.z);
+            spawnNextX += spawnsPerMeter;
         }
     }
 
-    GameObject RandomPrefab()
+    GameObject GetRandomCloud()
     {
         if (cloudPrefabs.Count > 0)
         {
@@ -43,7 +36,7 @@ public class CloudSpawner : MonoBehaviour
         return null;
     }
 
-    float RandomSpawnY()
+    float GetRandomSpawnY()
     {
         return transform.position.y + Random.Range(-verticalExtent, verticalExtent);
     }
