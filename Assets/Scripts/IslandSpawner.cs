@@ -44,7 +44,6 @@ public class IslandSpawner : MonoBehaviour
         GameObject frontVis = Instantiate(islandPrefab);
         frontVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
         frontVis.transform.GetComponent<SpriteRenderer>().sprite = dryIslandParts[0];
-        //makeTwo("front", position);
         position = position + 1;
         int floraType = (Random.Range(0, 2));
         while (length > 0)
@@ -53,15 +52,12 @@ public class IslandSpawner : MonoBehaviour
             GameObject midVis = Instantiate(islandPrefab);
             midVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
             midVis.transform.GetComponent<SpriteRenderer>().sprite = (dryIslandParts[Random.Range(1,dryIslandParts.Count - 2)]);
-            //makeTwo("mid", position);
             AddFlora(position, floraType);
             position = position + 1;
         }
         GameObject endVis = Instantiate(islandPrefab);
         endVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
         endVis.transform.GetComponent<SpriteRenderer>().sprite = dryIslandParts[dryIslandParts.Count - 1];
-        //makeTwo("back", position);
-
     }
 
 
