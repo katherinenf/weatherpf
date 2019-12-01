@@ -39,12 +39,12 @@ public class Island : MonoBehaviour
         if (type > 0)
         {
             GameObject flora = Instantiate(tree);
-            flora.transform.position = new Vector3(pos, floraHeight, transform.position.z);
+            flora.transform.position = new Vector3(pos, floraHeight, transform.position.z - 1);
         }
         if (type == 0)
         {
             GameObject flora = Instantiate(flower);
-            flora.transform.position = new Vector3(pos, floraHeight, transform.position.z);
+            flora.transform.position = new Vector3(pos, floraHeight, transform.position.z - 1);
 
         }
     }
