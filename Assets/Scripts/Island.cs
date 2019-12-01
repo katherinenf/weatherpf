@@ -11,41 +11,32 @@ public class Island : MonoBehaviour
 
     void Start()
     {
-        float position = transform.position.x;
         int length = (Random.Range(1, 4));
-        GameObject frontVis = Instantiate(islandSegmentPrefab);
-        frontVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+        GameObject frontVis = Instantiate(islandSegmentPrefab, transform);
         frontVis.transform.GetComponent<SpriteRenderer>().sprite = dryIslandParts[0];
-        position = position + 1;
         int floraType = (Random.Range(0, 2));
-        while (length > 0)
+        for (int i = 0; i < length; i++)
         {
-            length = length - 1;
-            GameObject midVis = Instantiate(islandSegmentPrefab);
-            midVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+            GameObject midVis = Instantiate(islandSegmentPrefab, transform);
+            midVis.transform.Translate(i + 1, 0, 0);
             midVis.transform.GetComponent<SpriteRenderer>().sprite = (dryIslandParts[Random.Range(1, dryIslandParts.Count - 2)]);
-            AddFlora(position, floraType);
-            position = position + 1;
+            AddFlora(midVis, floraType);
         }
-        GameObject endVis = Instantiate(islandSegmentPrefab);
-        endVis.transform.position = new Vector3(position, transform.position.y, transform.position.z);
+        GameObject endVis = Instantiate(islandSegmentPrefab, transform);
+        endVis.transform.Translate(length + 1, 0, 0);
         endVis.transform.GetComponent<SpriteRenderer>().sprite = dryIslandParts[dryIslandParts.Count - 1];
     }
 
     //adds trees or flowers based on type given
-    void AddFlora(float pos, int type)
+    void AddFlora(GameObject segment, int type)
     {
-        float floraHeight = transform.position.y + 1;
         if (type > 0)
         {
-            GameObject flora = Instantiate(tree);
-            flora.transform.position = new Vector3(pos, floraHeight, transform.position.z - 1);
+            GameObject flora = Instantiate(tree, segment.transform);
         }
-        if (type == 0)
+        else
         {
-            GameObject flora = Instantiate(flower);
-            flora.transform.position = new Vector3(pos, floraHeight, transform.position.z - 1);
-
+            GameObject flora = Instantiate(flower, segment.transform);
         }
     }
 }
