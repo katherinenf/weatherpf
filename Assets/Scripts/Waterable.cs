@@ -13,6 +13,14 @@ public class Waterable : MonoBehaviour
     // Set when this has been watered
     bool isWatered;
 
+    // The storm type required to water this
+    StormType requiredStorm;
+
+    public void IslandInit(StormType storm)
+    {
+        requiredStorm = storm;
+    }
+
     void Start()
     {
         // Start by showing the dry stuff
@@ -28,20 +36,20 @@ public class Waterable : MonoBehaviour
         }
     }
 
-    public void OnWatered()
+    public void OnWatered(StormType storm)
     {
-        if (isWatered)
+        if (isWatered || storm != requiredStorm)
             return;
 
         isWatered = true;
         
-        // Start by showing the dry stuff
+        // Hide the dry stuff
         foreach (GameObject go in dryVisuals)
         {
             go.SetActive(false);
         }
 
-        // Hide the wet stuff
+        // Show the wet stuff
         foreach (GameObject go in wetVisuals)
         {
             go.SetActive(true);

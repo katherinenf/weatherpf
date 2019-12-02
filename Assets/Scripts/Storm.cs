@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// The predefined storm types
+public enum StormType
+{
+    Light,
+    Heavy
+}
+
 public class Storm : MonoBehaviour
 {
     // Initial force to apply on spawn
@@ -27,6 +34,9 @@ public class Storm : MonoBehaviour
 
     // The renderers to fade in and out
     public Renderer[] renderers;
+
+    // The type of storm that what can be watered
+    public StormType type;
 
     Rigidbody2D rb;
 
@@ -104,7 +114,7 @@ public class Storm : MonoBehaviour
             Waterable[] waterables = i.collider.GetComponentsInChildren<Waterable>();
             foreach (Waterable w in waterables)
             {
-                w.OnWatered();
+                w.OnWatered(type);
             }
         }
     }

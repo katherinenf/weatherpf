@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Island : MonoBehaviour
 {
+    // Island segment prefabs to spawn. The first and last index must be the start and end segment.
     public GameObject[] islandSegmentPrefabs;
+
+    // Flora types
     public GameObject tree;
     public GameObject flower;
 
@@ -13,16 +16,28 @@ public class Island : MonoBehaviour
 
     void Start()
     {
+        // Select what type of storm waters this island
+        StormType stormType = PickStormType();
+
+        // Select the length of this island's middle
         int length = Random.Range(1, 4);
+
+        // Spawn the front segment
         GameObject frontVis = Instantiate(frontPrefab, transform);
-        int floraType = (Random.Range(0, 2));
+        frontVis.GetComponent<Waterable>().IslandInit(stormType);
+
+        // Spawn the middle segments
         for (int i = 0; i < length; i++)
         {
             GameObject midVis = Instantiate(PickRandomMiddleSegment(), transform);
+            midVis.GetComponent<Waterable>().IslandInit(stormType);
             midVis.transform.Translate(i + 1, 0, 0);
-            AddFlora(midVis, floraType);
+            AddFlora(midVis, stormType);
         }
+
+        // Spawn the end segment
         GameObject endVis = Instantiate(backPrefab, transform);
+        endVis.GetComponent<Waterable>().IslandInit(stormType);
         endVis.transform.Translate(length + 1, 0, 0);
     }
 
@@ -32,15 +47,22 @@ public class Island : MonoBehaviour
     }
 
     //adds trees or flowers based on type given
-    void AddFlora(GameObject segment, int type)
+    void AddFlora(GameObject segment, StormType stormType)
     {
-        if (type > 0)
+        GameObject flora; 
+        switch (stormType)
         {
-            Instantiate(tree, segment.transform);
+            case StormType.Light: flora = Instantiate(flower, segment.transform); break;
+            case StormType.Heavy: flora = Instantiate(tree, segment.transform); break;
+            default: return;
         }
-        else
-        {
-            Instantiate(flower, segment.transform);
-        }
+
+        flora.GetComponent<Waterable>().IslandInit(stormType);
+    }
+
+    StormType PickStormType()
+    {
+        int max = System.Enum.GetValues(typeof(StormType)).Length;
+        return (StormType)Random.Range(0, max);
     }
 }
