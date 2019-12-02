@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6245352345392026586}
   - component: {fileID: 4884578119335535233}
+  - component: {fileID: 3799634661440385274}
   m_Layer: 0
   m_Name: Island
   m_TagString: Untagged
@@ -54,3 +55,24 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 80a63b29de4d835469e6b652014e990a, type: 3}
   tree: {fileID: 2173586880436278421, guid: 154b78ca90022472fb1f301c6e14f5ff, type: 3}
   flower: {fileID: 6317495254838872669, guid: 05b839b3dffdc46aebfee77d4665be8b, type: 3}
+--- !u!50 &3799634661440385274
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236185259313945153}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

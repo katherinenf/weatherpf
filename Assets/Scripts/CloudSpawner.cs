@@ -8,6 +8,7 @@ public class CloudSpawner : MonoBehaviour
     public float spawnsPerMeter;
     public float verticalExtent;
     public float prewarmDistance;
+    public GameObject cloudParent;
 
     // The next x position that a cloud will spawn at
     float spawnNextX;
@@ -21,7 +22,7 @@ public class CloudSpawner : MonoBehaviour
     {
         while (spawnsPerMeter > 0 && spawnNextX <= transform.position.x)
         {
-            GameObject spawned = Instantiate(GetRandomCloud());
+            GameObject spawned = Instantiate(GetRandomCloud(), cloudParent.transform);
             spawned.transform.position = new Vector3(spawnNextX, GetRandomSpawnY(), transform.position.z);
             spawnNextX += spawnsPerMeter;
         }
