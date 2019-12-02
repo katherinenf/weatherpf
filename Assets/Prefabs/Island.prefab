@@ -44,15 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c80241a7c30a748a9d302a87958290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  islandSegmentPrefab: {fileID: 8749639780809127066, guid: 374390e3cec284b4a832071cd83f5d8a,
-    type: 3}
-  dryIslandParts:
-  - {fileID: 21300000, guid: db140d651cbb57c45a5a1e903ec47229, type: 3}
-  - {fileID: 21300000, guid: 1d093f5941ea7c64683a32919e6003aa, type: 3}
-  - {fileID: 21300000, guid: a43b77a82dbf8dc4b978ec61753ff911, type: 3}
-  - {fileID: 21300000, guid: 925583f65ed72834fb3f54ea280ef593, type: 3}
-  - {fileID: 21300000, guid: ebcee625475a75a43961e40664e61bff, type: 3}
-  - {fileID: 21300000, guid: 80a63b29de4d835469e6b652014e990a, type: 3}
+  islandSegmentPrefabs:
+  - {fileID: 5749369471898949704, guid: 7c9a354b1eedf814b875d73061b8308c, type: 3}
+  - {fileID: 5749369471898949704, guid: 73af5d4e5ab0be2429d983de115674e0, type: 3}
+  - {fileID: 5749369471898949704, guid: 09aefbf65a77dfc4385b3e197123a593, type: 3}
+  - {fileID: 5749369471898949704, guid: 7404e4086fc370147b696b2be24f1b23, type: 3}
+  - {fileID: 5749369471898949704, guid: 127d49428d4a45f40866f116f69c86ec, type: 3}
+  - {fileID: 5749369471898949704, guid: 11a7bfe4fa59d53408e6c67b3f6e29bb, type: 3}
   tree: {fileID: 2173586880436278421, guid: 154b78ca90022472fb1f301c6e14f5ff, type: 3}
   flower: {fileID: 6317495254838872669, guid: 05b839b3dffdc46aebfee77d4665be8b, type: 3}
 --- !u!50 &3799634661440385274

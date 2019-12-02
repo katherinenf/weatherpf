@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class CloudSpawner : MonoBehaviour
 {
+    // The random list of clouds prefabs to spawn
     public List<GameObject> cloudPrefabs;
-    public float spawnsPerMeter;
+
+    // Distance between cloud spawns
+    public float spawnDistance;
+
+    // Vertical extents that clouds will be spawned
     public float verticalExtent;
+
+    // Horizontal distance to retro-actively spawn clouds on start
     public float prewarmDistance;
+
+    // A gameobject the clouds will parent too
     public GameObject cloudParent;
 
     // The next x position that a cloud will spawn at
@@ -20,11 +29,11 @@ public class CloudSpawner : MonoBehaviour
 
     void Update()
     {
-        while (spawnsPerMeter > 0 && spawnNextX <= transform.position.x)
+        while (spawnDistance > 0 && spawnNextX <= transform.position.x)
         {
             GameObject spawned = Instantiate(GetRandomCloud(), cloudParent.transform);
             spawned.transform.position = new Vector3(spawnNextX, GetRandomSpawnY(), transform.position.z);
-            spawnNextX += spawnsPerMeter;
+            spawnNextX += spawnDistance;
         }
     }
 

@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class Island : MonoBehaviour
 {
-    public GameObject islandSegmentPrefab;
-    public List<Sprite> dryIslandParts;
+    public GameObject[] islandSegmentPrefabs;
     public GameObject tree;
     public GameObject flower;
 
+    GameObject frontPrefab { get => islandSegmentPrefabs[0]; }
+    GameObject backPrefab { get => islandSegmentPrefabs[islandSegmentPrefabs.Length - 1]; }
+
     void Start()
     {
-        int length = (Random.Range(1, 4));
-        GameObject frontVis = Instantiate(islandSegmentPrefab, transform);
-        frontVis.transform.GetComponent<SpriteRenderer>().sprite = dryIslandParts[0];
+        int length = Random.Range(1, 4);
+        GameObject frontVis = Instantiate(frontPrefab, transform);
         int floraType = (Random.Range(0, 2));
         for (int i = 0; i < length; i++)
         {
-            GameObject midVis = Instantiate(islandSegmentPrefab, transform);
+            GameObject midVis = Instantiate(PickRandomMiddleSegment(), transform);
             midVis.transform.Translate(i + 1, 0, 0);
-            midVis.transform.GetComponent<SpriteRenderer>().sprite = (dryIslandParts[Random.Range(1, dryIslandParts.Count - 2)]);
             AddFlora(midVis, floraType);
         }
-        GameObject endVis = Instantiate(islandSegmentPrefab, transform);
+        GameObject endVis = Instantiate(backPrefab, transform);
         endVis.transform.Translate(length + 1, 0, 0);
-        endVis.transform.GetComponent<SpriteRenderer>().sprite = dryIslandParts[dryIslandParts.Count - 1];
+    }
+
+    GameObject PickRandomMiddleSegment()
+    {
+        return islandSegmentPrefabs[Random.Range(1, islandSegmentPrefabs.Length - 2)];
     }
 
     //adds trees or flowers based on type given
@@ -32,11 +36,11 @@ public class Island : MonoBehaviour
     {
         if (type > 0)
         {
-            GameObject flora = Instantiate(tree, segment.transform);
+            Instantiate(tree, segment.transform);
         }
         else
         {
-            GameObject flora = Instantiate(flower, segment.transform);
+            Instantiate(flower, segment.transform);
         }
     }
 }

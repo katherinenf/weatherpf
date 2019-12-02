@@ -98,19 +98,13 @@ public class Storm : MonoBehaviour
         // If an island is hit, switch dry island sprite to wet island sprite
         foreach (RaycastHit2D i in hits)
         {
-            if (!i.transform.GetComponent<Island>())
+            if (!i.rigidbody.GetComponent<Island>())
                 continue;
 
-            int spriteIndex = drySprites.IndexOf(i.collider.GetComponent<SpriteRenderer>().sprite);
-            if (spriteIndex >= 0)
+            Waterable[] waterables = i.collider.GetComponentsInChildren<Waterable>();
+            foreach (Waterable w in waterables)
             {
-                i.collider.GetComponent<SpriteRenderer>().sprite = wetSprites[spriteIndex];
-                
-                Flora flora = i.collider.GetComponentInChildren<Flora>();
-                if (flora)
-                {
-                    flora.OnWatered();
-                }
+                w.OnWatered();
             }
         }
     }
