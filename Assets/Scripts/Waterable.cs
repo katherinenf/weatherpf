@@ -10,6 +10,15 @@ public class Waterable : MonoBehaviour
     // The wet visuals to show when watered
     public GameObject[] wetVisuals;
 
+    // The damages visuals to show when miswatered
+    public GameObject[] damagedVisuals;
+
+    // The point value that watering this awards
+    public int pointValue;
+
+    // If set, incorrectly watering this deals hp damage
+    public bool dealsDamage;
+
     // Set when this has been watered
     bool isWatered;
 
@@ -38,21 +47,39 @@ public class Waterable : MonoBehaviour
 
     public void OnWatered(StormType storm)
     {
-        if (isWatered || storm != requiredStorm)
+        // Bail if already watered or if there is no bad effects from miswatering
+        if (isWatered || (!dealsDamage && storm != requiredStorm))
             return;
 
         isWatered = true;
-        
+
         // Hide the dry stuff
         foreach (GameObject go in dryVisuals)
         {
             go.SetActive(false);
         }
 
-        // Show the wet stuff
-        foreach (GameObject go in wetVisuals)
+        if (storm != requiredStorm)
         {
-            go.SetActive(true);
+            // Show the wet stuff
+            foreach (GameObject go in damagedVisuals)
+            {
+                go.SetActive(true);
+            }
+
+            // Deal damage
+            GameManager.Instance.LoseHealth();
+        }
+        else
+        {
+            // Show the wet stuff
+            foreach (GameObject go in wetVisuals)
+            {
+                go.SetActive(true);
+            }
+
+            // Award score
+            GameManager.Instance.AddScore(pointValue);
         }
     }
 }

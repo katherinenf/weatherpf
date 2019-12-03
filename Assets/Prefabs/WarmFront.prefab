@@ -71,7 +71,7 @@ PrefabInstance:
         type: 3}
       propertyPath: stormPrefab
       value: 
-      objectReference: {fileID: 8241172512327625920, guid: 8db98191c0c787247a4be6c4d66d8ddf,
+      objectReference: {fileID: 8463986953654024917, guid: ffd775f6bfbd9994d87797926b80da9a,
         type: 3}
     - target: {fileID: 6534213802020977975, guid: 09db4b1a9b53d1f499bf4207d90bb885,
         type: 3}

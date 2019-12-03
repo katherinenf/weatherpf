@@ -51,6 +51,7 @@ MonoBehaviour:
   wetVisuals:
   - {fileID: 3425397907449728168}
   - {fileID: 4269580818727074478}
+  pointValue: 1
 --- !u!1 &3425397907449728168
 GameObject:
   m_ObjectHideFlags: 0

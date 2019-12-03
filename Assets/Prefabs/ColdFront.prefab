@@ -4823,7 +4823,7 @@ MonoBehaviour:
   fadeInTime: 0.1
   fadeOutTime: 0.6
   stormSpawnDelay: 0.5
-  stormPrefab: {fileID: 8463986953654024917, guid: ffd775f6bfbd9994d87797926b80da9a,
+  stormPrefab: {fileID: 8241172512327625920, guid: 8db98191c0c787247a4be6c4d66d8ddf,
     type: 3}
   sprite: {fileID: 6534213802020977975}
   emitter: {fileID: 124018209964827300}

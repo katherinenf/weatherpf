@@ -19,9 +19,6 @@ public class Player : MonoBehaviour
     // Bullet to spawn for cold fronts
     public GameObject coldFrontPrefab;
 
-    // The distance the player has traveled this game session
-    public float distanceTraveled;
-
     Rigidbody2D rb;
     float fireCooldown;
     float lastX;
@@ -34,8 +31,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        // Stop allowing input if the game is over
+        if (GameManager.Instance.gameIsOver)
+            return;
+
         // Compute distance traveled
-        distanceTraveled += transform.position.x - lastX;
+        GameManager.Instance.distanceTraveled += transform.position.x - lastX;
         lastX = transform.position.x;
 
         // Update the shoot cooldown.
@@ -54,6 +55,10 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Stop moving if the game is over
+        if (GameManager.Instance.gameIsOver)
+            return;
+
         // Get player vertical input
         Vector2 input = new Vector2(1, Input.GetAxisRaw("Vertical"));
 
