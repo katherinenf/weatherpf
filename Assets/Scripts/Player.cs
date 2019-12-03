@@ -19,16 +19,25 @@ public class Player : MonoBehaviour
     // Bullet to spawn for cold fronts
     public GameObject coldFrontPrefab;
 
+    // The distance the player has traveled this game session
+    public float distanceTraveled;
+
     Rigidbody2D rb;
     float fireCooldown;
+    float lastX;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        lastX = transform.position.x;
     }
 
     void Update()
     {
+        // Compute distance traveled
+        distanceTraveled += transform.position.x - lastX;
+        lastX = transform.position.x;
+
         // Update the shoot cooldown.
         fireCooldown = Mathf.Max(fireCooldown - Time.deltaTime, 0f);
 
