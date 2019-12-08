@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 13c97404bee2ea24c9937359db77cf60
+guid: 284e5a9dea62858499bceff860a0eac2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - islandPrefab: {instanceID: 0}
   - hotSpotPrefab: {fileID: 7851269349806563285, guid: 3b915e618122d9c4fade56581b1b901b,
       type: 3}
   executionOrder: 0

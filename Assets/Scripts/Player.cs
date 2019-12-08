@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         {
             Fire(coldFrontPrefab);
         } 
-        else if (Input.GetMouseButton(1) || Input.GetKeyDown("w")) // Right mouse
+        else if (Input.GetMouseButton(1) || Input.GetKeyDown("h")) // Right mouse
         {
             Fire(warmFrontPrefab);
         }

@@ -115,9 +115,15 @@ public class Storm : MonoBehaviour
         // Find island sections a storm passes over
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, -Vector2.up, 6f);
 
-        // If an island is hit, switch dry island sprite to wet island sprite
         foreach (RaycastHit2D i in hits)
         {
+            Debug.Log("found a " + i.transform.gameObject.name);
+            //if a hotspot is detected, spawn a hurricane
+            if (i.transform.gameObject.name == "HotSpot(Clone)")
+            {
+                GameManager.Instance.StartHurricane();
+            }
+            // If an island is hit, switch dry island sprite to wet island sprite
             if (!i.rigidbody.GetComponent<Island>())
                 continue;
 
