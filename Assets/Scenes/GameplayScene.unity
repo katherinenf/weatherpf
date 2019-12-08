@@ -2020,6 +2020,8 @@ MonoBehaviour:
     type: 3}
   coldFrontPrefab: {fileID: 6943687048465240942, guid: 09db4b1a9b53d1f499bf4207d90bb885,
     type: 3}
+  hurtInvulnTime: 1.5
+  hurtBlinkRate: 0.15
 --- !u!212 &1465611713
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2359,6 +2361,7 @@ MonoBehaviour:
   currentHealth: 0
   gameIsOver: 0
   score: 0
+  hurricaneDirector: {fileID: 1653915323}
 --- !u!4 &1555793133
 Transform:
   m_ObjectHideFlags: 0
@@ -2523,6 +2526,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602596049}
   m_CullTransparentMesh: 0
+--- !u!320 &1653915323 stripped
+PlayableDirector:
+  m_CorrespondingSourceObject: {fileID: 6138295534999220367, guid: 0153fa2434172954fa2599a7301a72b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1024227459}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1689003539
 GameObject:
   m_ObjectHideFlags: 0
