@@ -26,4 +26,13 @@ public class Plane : MonoBehaviour
         // Update rigidbody position
         rb.MovePosition(rb.position + delteMove);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            GameManager.Instance.LoseHealth();
+        }
+
+    }
 }

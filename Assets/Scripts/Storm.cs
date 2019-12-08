@@ -51,6 +51,14 @@ public class Storm : MonoBehaviour
         StartCoroutine("PlayStormSequence");
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Plane>())
+        {
+            Destroy(gameObject);
+        }
+
+    }
 
     IEnumerator PlayStormSequence()
     {
@@ -99,6 +107,8 @@ public class Storm : MonoBehaviour
         // Despawn
         Destroy(gameObject);
     }
+
+
 
     void DetectAndWaterIslands()
     {

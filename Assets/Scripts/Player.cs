@@ -43,11 +43,11 @@ public class Player : MonoBehaviour
         fireCooldown = Mathf.Max(fireCooldown - Time.deltaTime, 0f);
 
         // Handle user input
-        if (Input.GetMouseButton(0)) // Left mouse
+        if (Input.GetMouseButton(0) || Input.GetKeyDown("c")) // Left mouse
         {
             Fire(coldFrontPrefab);
         } 
-        else if (Input.GetMouseButton(1)) // Right mouse
+        else if (Input.GetMouseButton(1) || Input.GetKeyDown("w")) // Right mouse
         {
             Fire(warmFrontPrefab);
         }
