@@ -19,18 +19,33 @@ public class Player : MonoBehaviour
     // Bullet to spawn for cold fronts
     public GameObject coldFrontPrefab;
 
+    // The amount of time the player is invulnerable after being hurt
+    public float hurtInvulnTime;
+
+    // The rate to blink the player sprite when hurt
+    public float hurtBlinkRate;
+
     Rigidbody2D rb;
+    SpriteRenderer sprite;
     float fireCooldown;
     float lastX;
+    float curHurtInvulnTime;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
         lastX = transform.position.x;
     }
 
     void Update()
     {
+        // Process hurt blink
+        curHurtInvulnTime -= Time.deltaTime;
+        Color c = sprite.color;
+        c.a = Mathf.Round((curHurtInvulnTime > 0f) ? ((curHurtInvulnTime % hurtBlinkRate) / hurtBlinkRate) : 1f);
+        sprite.color = c;
+
         // Stop allowing input if the game is over
         if (GameManager.Instance.gameIsOver)
             return;
@@ -92,5 +107,17 @@ public class Player : MonoBehaviour
         // Spawn a bullet of the right type slightly ahead of us
         GameObject bullet = Instantiate(bulletType);
         bullet.transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+    }
+
+    // Hurt the player and make him invulnerable for a short time
+    public bool Hurt()
+    {
+        if (curHurtInvulnTime > 0f)
+        {
+            return false; // no damage dealt
+        }
+        curHurtInvulnTime = hurtInvulnTime;
+        GameManager.Instance.LoseHealth();
+        return true; // damage dealt successfully
     }
 }

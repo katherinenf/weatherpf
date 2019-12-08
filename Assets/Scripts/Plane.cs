@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Plane : MonoBehaviour
 {
-    // Player movement speed
+    // Movement speed
     public Vector2 speed;
 
     Rigidbody2D rb;
@@ -29,9 +29,10 @@ public class Plane : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player")
+        Player p = collision.gameObject.GetComponent<Player>();
+        if (p)
         {
-            GameManager.Instance.LoseHealth();
+            p.Hurt();
         }
 
     }
