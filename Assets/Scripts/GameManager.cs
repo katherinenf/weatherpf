@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +33,9 @@ public class GameManager : MonoBehaviour
 
     // The number of plants watered this game session
     public int score;
+
+    // The timeline for animating hurricanes
+    public PlayableDirector hurricaneDirector;
 
     // Public singleton accessor
     public static GameManager Instance { get => _instance; }
@@ -89,6 +93,16 @@ public class GameManager : MonoBehaviour
         if (!gameIsOver)
         {
             score += amount;
+        }
+    }
+
+    // Starts the hurricane animation or does nothing if it's already going
+    public void StartHurricane()
+    {
+        // Play only if not already playing
+        if (hurricaneDirector.state != PlayState.Playing)
+        {
+            hurricaneDirector.Play();
         }
     }
 
