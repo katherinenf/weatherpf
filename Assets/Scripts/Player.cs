@@ -28,8 +28,16 @@ public class Player : MonoBehaviour
     // The rate to blink the player sprite when hurt
     public float hurtBlinkRate;
 
+    // VFX for cold hot while moving up
+    public ParticleSystem hotEmitter;
+
+    // VFX for cold air while moving down
+    public ParticleSystem coldEmitter;
+
+    // The visuals to blink when hurt
+    public Renderer[] blinkVisuals;
+
     Rigidbody2D rb;
-    SpriteRenderer sprite;
     float fireCooldown;
     float lastX;
     float curHurtInvulnTime;
@@ -37,7 +45,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
         lastX = transform.position.x;
     }
 
@@ -45,9 +52,13 @@ public class Player : MonoBehaviour
     {
         // Process hurt blink
         curHurtInvulnTime -= Time.deltaTime;
-        Color c = sprite.color;
-        c.a = Mathf.Round((curHurtInvulnTime > 0f) ? ((curHurtInvulnTime % hurtBlinkRate) / hurtBlinkRate) : 1f);
-        sprite.color = c;
+        float alpha = Mathf.Round((curHurtInvulnTime > 0f) ? ((curHurtInvulnTime % hurtBlinkRate) / hurtBlinkRate) : 1f);
+        foreach (Renderer r in blinkVisuals)
+        {
+            Color c = r.material.color;
+            c.a = alpha;
+            r.material.color = c;
+        }
 
         // Stop allowing input if the game is over
         if (GameManager.Instance.gameIsOver)
@@ -87,6 +98,29 @@ public class Player : MonoBehaviour
 
         // Update rigidbody position
         rb.MovePosition(ClampToScreen(rb.position + delteMove));
+
+        // Update movement emitter
+        if (input.y > 0f)
+        {
+            if (!hotEmitter.isPlaying)
+            {
+                hotEmitter.Play();
+                coldEmitter.Stop();
+            }
+        }
+        else if (input.y < 0f)
+        {
+            if (!coldEmitter.isPlaying)
+            {
+                coldEmitter.Play();
+                hotEmitter.Stop();
+            }
+        }
+        else
+        {
+            coldEmitter.Stop();
+            hotEmitter.Stop();
+        }
     }
 
     // Clamps input pos to the screen bounds
