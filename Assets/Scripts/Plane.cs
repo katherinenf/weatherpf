@@ -29,11 +29,13 @@ public class Plane : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player p = collision.gameObject.GetComponent<Player>();
-        if (p)
+        if (collision.gameObject.GetComponent<Player>())
         {
-            p.Hurt();
+            GameManager.Instance.LoseHealth();
         }
-
+        else if (collision.gameObject.GetComponent<Storm>())
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }

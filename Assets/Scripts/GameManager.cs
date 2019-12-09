@@ -78,12 +78,15 @@ public class GameManager : MonoBehaviour
     {
         if (!gameIsOver)
         {
-            currentHealth--;
-            UpdateHPIcons();
-
-            if (currentHealth <= 0)
+            if (player.Hurt())
             {
-                GameOver();
+                currentHealth--;
+                UpdateHPIcons();
+
+                if (currentHealth <= 0)
+                {
+                    GameOver();
+                }
             }
         }
     }

@@ -1769,7 +1769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planePrefab: {fileID: 8174160285933667045, guid: 35801df323debc745af55bc8ccfe5ede,
     type: 3}
-  spawnDistance: 20
+  spawnDistance: 10
   verticalExtent: 3.54
 --- !u!1 &1281601169 stripped
 GameObject:

@@ -122,7 +122,6 @@ public class Player : MonoBehaviour
             return false; // no damage dealt
         }
         curHurtInvulnTime = hurtInvulnTime;
-        GameManager.Instance.LoseHealth();
         return true; // damage dealt successfully
     }
 }

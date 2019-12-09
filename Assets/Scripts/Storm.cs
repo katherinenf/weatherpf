@@ -50,14 +50,6 @@ public class Storm : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<Plane>())
-        {
-            Destroy(gameObject);
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
