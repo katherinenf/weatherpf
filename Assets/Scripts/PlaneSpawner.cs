@@ -16,7 +16,10 @@ public class PlaneSpawner : MonoBehaviour
     // The next x position that a plane will spawn at
     float spawnNextX;
 
-
+    void Start()
+    {
+        spawnNextX = transform.position.x;
+    }
 
     void Update()
     {
