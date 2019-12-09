@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8174160285933667044}
   - component: {fileID: 8174160285933667033}
   - component: {fileID: -4675281257853066599}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.044463158, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.7469807, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &8174160286294471995
 GameObject:
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 8174160286294471994}
   - component: {fileID: 8174160286294471992}
   - component: {fileID: 8174160286294471993}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Smoke VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4877,7 +4877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8174160286615583027}
   - component: {fileID: 8174160286615583026}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Propeller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4957,7 +4957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8174160286751478553}
   - component: {fileID: 8174160286751478552}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

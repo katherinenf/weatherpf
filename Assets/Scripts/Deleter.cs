@@ -8,4 +8,9 @@ public class Deleter : MonoBehaviour
     {
         Destroy(collision.gameObject);
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(collision.gameObject);
+    }
 }
