@@ -4817,8 +4817,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3121c747c2bea4f439fa9216e6fe2483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impulseX: 8
-  lifeTime: 3.3
+  impulseX: 9
+  lifeTime: 1.25
   scaleRate: 0.25
   fadeInTime: 0.1
   fadeOutTime: 0.6

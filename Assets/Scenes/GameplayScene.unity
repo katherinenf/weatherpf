@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hotSpotPrefab: {fileID: 7851269349806563285, guid: 3b915e618122d9c4fade56581b1b901b,
     type: 3}
-  hotspotSpawnChance: 4
+  hotspotSpawnChance: 0.2
   spawnDistance: 10
   islandPrefab: {fileID: 1236185259313945153, guid: 13e0b218dcd5ff94db577db36b59d5fe,
     type: 3}
@@ -1254,6 +1254,26 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[13].value
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6138295534073199187, guid: 0153fa2434172954fa2599a7301a72b7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138295534073199184, guid: 0153fa2434172954fa2599a7301a72b7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138295533527685603, guid: 0153fa2434172954fa2599a7301a72b7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138295533504124461, guid: 0153fa2434172954fa2599a7301a72b7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.28999996
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0153fa2434172954fa2599a7301a72b7, type: 3}
 --- !u!4 &1024227460 stripped
@@ -1751,6 +1771,25 @@ MonoBehaviour:
     type: 3}
   spawnDistance: 20
   verticalExtent: 3.54
+--- !u!1 &1281601169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6138295534073199184, guid: 0153fa2434172954fa2599a7301a72b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1024227459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1281601172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281601169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164892504e232c94e95218736a32439c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castExtents: 17.01
 --- !u!1 &1353858263
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,6 +2103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 2, y: 6}
+  acceleration: {x: 0.02, y: 0}
   floorCeilY: {x: -2.25, y: 0.75}
   fireRate: 2
   warmFrontPrefab: {fileID: 7196165770003287368, guid: 8795df8047b30be4ab388b4c02fd121e,

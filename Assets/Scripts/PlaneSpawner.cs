@@ -29,9 +29,7 @@ public class PlaneSpawner : MonoBehaviour
             spawned.transform.position = new Vector3(spawnNextX, GetRandomSpawnY(), transform.position.z);
             spawnNextX += spawnDistance;
         }
-
     }
-
 
     float GetRandomSpawnY()
     {

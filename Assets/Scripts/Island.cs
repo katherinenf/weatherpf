@@ -62,7 +62,7 @@ public class Island : MonoBehaviour
 
     StormType PickStormType()
     {
-        int max = System.Enum.GetValues(typeof(StormType)).Length;
+        int max = System.Enum.GetValues(typeof(StormType)).Length - 1;
         return (StormType)Random.Range(0, max);
     }
 }

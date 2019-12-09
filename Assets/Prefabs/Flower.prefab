@@ -295,7 +295,7 @@ MonoBehaviour:
   damagedVisuals:
   - {fileID: 5438162042884255874}
   pointValue: 1
-  dealsDamage: 1
+  damagingStorms: 0100000002000000
 --- !u!1 &8361271867826078003
 GameObject:
   m_ObjectHideFlags: 0

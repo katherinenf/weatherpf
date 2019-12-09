@@ -8,7 +8,7 @@ public class IslandSpawner : MonoBehaviour
     public GameObject hotSpotPrefab;
 
     //chances of spawning a hotspot
-    public int hotspotSpawnChance;
+    public float hotspotSpawnChance;
 
     // The distance between island spawns
     public float spawnDistance;
@@ -26,11 +26,10 @@ public class IslandSpawner : MonoBehaviour
 
     void Update()
     {
-        int spawn = Random.Range(0, hotspotSpawnChance);
         while (spawnDistance > 0 && spawnNextX <= transform.position.x)
-
         {
-            if (spawn <= 2)
+            float spawn = Random.Range(0f, 1f);
+            if (spawn > hotspotSpawnChance)
             {
                 Instantiate(islandPrefab, new Vector3(spawnNextX, transform.position.y, transform.position.z), transform.rotation);
                 spawnNextX += spawnDistance;

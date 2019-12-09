@@ -16,8 +16,8 @@ public class Waterable : MonoBehaviour
     // The point value that watering this awards
     public int pointValue;
 
-    // If set, incorrectly watering this deals hp damage
-    public bool dealsDamage;
+    // The list of storms types that damage this
+    public StormType[] damagingStorms;
 
     // Set when this has been watered
     bool isWatered;
@@ -48,30 +48,17 @@ public class Waterable : MonoBehaviour
     public void OnWatered(StormType storm)
     {
         // Bail if already watered or if there is no bad effects from miswatering
-        if (isWatered || (!dealsDamage && storm != requiredStorm))
+        if (isWatered)
             return;
 
-        isWatered = true;
-
-        // Hide the dry stuff
-        foreach (GameObject go in dryVisuals)
+        if (storm == requiredStorm)
         {
-            go.SetActive(false);
-        }
-
-        if (storm != requiredStorm)
-        {
-            // Show the wet stuff
-            foreach (GameObject go in damagedVisuals)
+            // Hide the dry stuff
+            foreach (GameObject go in dryVisuals)
             {
-                go.SetActive(true);
+                go.SetActive(false);
             }
 
-            // Deal damage
-            GameManager.Instance.LoseHealth();
-        }
-        else
-        {
             // Show the wet stuff
             foreach (GameObject go in wetVisuals)
             {
@@ -80,6 +67,29 @@ public class Waterable : MonoBehaviour
 
             // Award score
             GameManager.Instance.AddScore(pointValue);
+
+            // Prevent further interaction
+            isWatered = true;
+        }
+        else if (System.Array.IndexOf(damagingStorms, storm) != -1)
+        {
+            // Hide the dry stuff
+            foreach (GameObject go in dryVisuals)
+            {
+                go.SetActive(false);
+            }
+
+            // Show the damaged stuff
+            foreach (GameObject go in damagedVisuals)
+            {
+                go.SetActive(true);
+            }
+
+            // Deal damage
+            GameManager.Instance.LoseHealth();
+
+            // Prevent further interaction
+            isWatered = true;
         }
     }
 }

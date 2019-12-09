@@ -6,7 +6,8 @@ using UnityEngine;
 public enum StormType
 {
     Light,
-    Heavy
+    Heavy,
+    Hurricane
 }
 
 public class Storm : MonoBehaviour
@@ -26,17 +27,14 @@ public class Storm : MonoBehaviour
     // Time that this cloud fades out for
     public float fadeOutTime;
 
-    // Dry sprites to assign to the islands
-    public List<Sprite> drySprites;
-
-    // Wet sprites to assign to the islands
-    public List<Sprite> wetSprites;
-
     // The renderers to fade in and out
     public Renderer[] renderers;
 
     // The type of storm that what can be watered
     public StormType type;
+
+    // The extents used to find waterables during shape casts
+    public float castExtents;
 
     Rigidbody2D rb;
 
@@ -51,13 +49,19 @@ public class Storm : MonoBehaviour
         StartCoroutine("PlayStormSequence");
 
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Plane>())
         {
             Destroy(gameObject);
         }
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        DetectAndWaterIslands();
     }
 
     IEnumerator PlayStormSequence()
@@ -80,20 +84,13 @@ public class Storm : MonoBehaviour
         } while (curGrowTime < growTime);
 
         // Rain and water islands
-        float curRainTime = 0f;
-        do
-        {
-            curRainTime += Time.deltaTime;
-            DetectAndWaterIslands();
-            yield return null;
-        } while (curRainTime < rainTime);
+        yield return new WaitForSeconds(rainTime);
 
         // Fade out
         float curfadeTime = 0f;
         do
         {
             curfadeTime += Time.deltaTime;
-            DetectAndWaterIslands();
             float alpha = Mathf.SmoothStep(1, 0, curfadeTime / fadeOutTime);
             foreach (Renderer r in renderers)
             {
@@ -108,20 +105,23 @@ public class Storm : MonoBehaviour
         Destroy(gameObject);
     }
 
-
-
     void DetectAndWaterIslands()
     {
         // Find island sections a storm passes over
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, -Vector2.up, 6f);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(
+            transform.position, 
+            new Vector2(castExtents * transform.localScale.x, 1f * transform.localScale.y), 
+            0f, 
+            Vector2.down
+        );
 
         foreach (RaycastHit2D i in hits)
         {
-            Debug.Log("found a " + i.transform.gameObject.name);
             //if a hotspot is detected, spawn a hurricane
             if (i.transform.gameObject.name == "HotSpot(Clone)")
             {
                 GameManager.Instance.StartHurricane();
+                Destroy(gameObject);
             }
             // If an island is hit, switch dry island sprite to wet island sprite
             if (!i.rigidbody.GetComponent<Island>())
@@ -133,5 +133,14 @@ public class Storm : MonoBehaviour
                 w.OnWatered(type);
             }
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1, 0, 0, 0.75f);
+        Gizmos.DrawLine(
+            transform.position - new Vector3(castExtents / 2f * transform.localScale.x, 0, 0),
+            transform.position + new Vector3(castExtents / 2f * transform.localScale.x, 0, 0)
+        );
     }
 }

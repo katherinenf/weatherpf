@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     // Player movement speed
     public Vector2 speed;
 
+    // Player acceleration overtime
+    public Vector2 acceleration;
+
     // Additional buffer space that the player cannot move on the vertical axis
     public Vector2 floorCeilY;
 
@@ -73,6 +76,8 @@ public class Player : MonoBehaviour
         // Stop moving if the game is over
         if (GameManager.Instance.gameIsOver)
             return;
+
+        speed += acceleration * Time.fixedDeltaTime;
 
         // Get player vertical input
         Vector2 input = new Vector2(1, Input.GetAxisRaw("Vertical"));
