@@ -113,4 +113,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("GameplayScene");
     }
+
+    public void QuitGame()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+    }
 }
