@@ -87,6 +87,12 @@ PrefabInstance:
       propertyPath: type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 460761814733435238, guid: ffd775f6bfbd9994d87797926b80da9a,
+        type: 3}
+      propertyPath: puffPrefab
+      value: 
+      objectReference: {fileID: 2880478154459905741, guid: 5bb4b1084b7e8634282c3b0810054dd7,
+        type: 3}
     - target: {fileID: 7366433929705502003, guid: ffd775f6bfbd9994d87797926b80da9a,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar

@@ -35,7 +35,7 @@ public class Plane : MonoBehaviour
         }
         else if (collision.gameObject.GetComponent<Storm>())
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Storm>().BreakApart();
         }
     }
 }

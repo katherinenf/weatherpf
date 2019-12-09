@@ -36,6 +36,9 @@ public class Storm : MonoBehaviour
     // The extents used to find waterables during shape casts
     public float castExtents;
 
+    // VFX when this cloud breaks apart
+    public GameObject puffPrefab;
+
     Rigidbody2D rb;
 
     void Start()
@@ -125,6 +128,13 @@ public class Storm : MonoBehaviour
                 w.OnWatered(type);
             }
         }
+    }
+
+    // Destroys this storm with pretty vfx
+    public void BreakApart()
+    {
+        Instantiate(puffPrefab, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 
     void OnDrawGizmosSelected()
