@@ -26,6 +26,26 @@ public class TutorialManager : MonoBehaviour
         UpdateButtons();
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenuScene");
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            // Don't allow quit
+            if (currentPage + 1 < pages.Length)
+            {
+                NextPage();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            PreviousPage();
+        }
+    }
+
     public void NextPage()
     {
         if (currentPage + 1 < pages.Length)

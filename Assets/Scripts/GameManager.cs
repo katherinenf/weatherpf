@@ -56,6 +56,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitGame();
+        }
+
         distanceText.text = distanceTraveled.ToString("N0") + "m";
         scoreText.text = score.ToString();
     }
